@@ -15,46 +15,44 @@ import com.generation.crudfarmacia.repository.ProdutoRepository;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+	@Autowired
+	private ProdutoRepository produtoRepository;
 
-    @GetMapping
-    public ResponseEntity<List<Produto>> getAll() {
-        return ResponseEntity.ok(produtoRepository.findAll());
-    }
+	@GetMapping
+	public ResponseEntity<List<Produto>> getAll() {
+		return ResponseEntity.ok(produtoRepository.findAll());
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Produto> getById(@PathVariable Long id) {
-        return produtoRepository.findById(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<Produto> getById(@PathVariable Long id) {
+		return produtoRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+	}
 
-    @PostMapping
-    public ResponseEntity<Produto> create(@RequestBody Produto produto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
-    }
+	@PostMapping
+	public ResponseEntity<Produto> create(@RequestBody Produto produto) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Produto> update(@PathVariable Long id, @RequestBody Produto produto) {
-        if (!produtoRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        produto.setId(id);
-        return ResponseEntity.ok(produtoRepository.save(produto));
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<Produto> update(@PathVariable Long id, @RequestBody Produto produto) {
+		if (!produtoRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		produto.setId(id);
+		return ResponseEntity.ok(produtoRepository.save(produto));
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (!produtoRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        produtoRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		if (!produtoRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		produtoRepository.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
 
-    @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
-        return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
-    }
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
+		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
+	}
 }

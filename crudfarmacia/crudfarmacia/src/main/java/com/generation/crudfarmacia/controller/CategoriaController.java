@@ -24,45 +24,43 @@ import com.generation.crudfarmacia.repository.CategoriaRepository;
 public class CategoriaController {
 
 	@Autowired
-    private CategoriaRepository categoriaRepository;
+	private CategoriaRepository categoriaRepository;
 
-    @GetMapping
-    public ResponseEntity<List<Categoria>> getAll() {
-        return ResponseEntity.ok(categoriaRepository.findAll());
-    }
+	@GetMapping
+	public ResponseEntity<List<Categoria>> getAll() {
+		return ResponseEntity.ok(categoriaRepository.findAll());
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Categoria> getById(@PathVariable Long id) {
-        return categoriaRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<Categoria> getById(@PathVariable Long id) {
+		return categoriaRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+	}
 
-    @PostMapping
-    public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
-    }
+	@PostMapping
+	public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria categoria) {
-        if (!categoriaRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        categoria.setId(id);
-        return ResponseEntity.ok(categoriaRepository.save(categoria));
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria categoria) {
+		if (!categoriaRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		categoria.setId(id);
+		return ResponseEntity.ok(categoriaRepository.save(categoria));
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (!categoriaRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        categoriaRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		if (!categoriaRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		categoriaRepository.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
 
-    @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<Categoria>> getByNome(@PathVariable String nome) {
-        return ResponseEntity.ok(categoriaRepository.findByNomeContainingIgnoreCase(nome));
-    }
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Categoria>> getByNome(@PathVariable String nome) {
+		return ResponseEntity.ok(categoriaRepository.findByNomeContainingIgnoreCase(nome));
+	}
 }

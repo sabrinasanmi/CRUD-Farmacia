@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.generation.crudfarmacia.model.Categoria;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository <Categoria, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 	List<Categoria> findByNomeContainingIgnoreCase(@Param("nome") String nome);
 }
