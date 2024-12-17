@@ -1,0 +1,9 @@
+{
+    "nome": "Medicamentos",
+    "descricao": "Categoria de medicamentos diversos"
+}
+
+{
+    "nome": "Medicamentos Genéricos",
+    "descricao": "Cópias autorizadas de medicamentos de marca"
+}

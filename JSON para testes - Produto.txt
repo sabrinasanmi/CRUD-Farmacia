@@ -1,0 +1,25 @@
+{
+    "nome": "Paracetamol",
+    "preco": 10.50,
+    "descricao": "Analgesico para dor leve a moderada.",
+    "categoria": {
+      "id": 1,
+      "nome": "Medicamentos",
+      "descricao": "Categoria de medicamentos diversos"
+    }
+  }  
+
+
+{
+    "nome": "Ibuprofeno",
+    "preco": 15.75,
+    "descricao": "Anti-inflamatório para dores e febres.",
+    "categoria": {
+      "id": 1,
+      "nome": "Medicamentos",
+      "descricao": "Categoria de medicamentos diversos"
+    }
+  }  
+
+
+
